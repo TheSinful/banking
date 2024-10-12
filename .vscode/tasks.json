@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ build all",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/src/*.cpp",
+                "-o",
+                "${workspaceFolder}/bin/banking", 
+                "-lsqlite3"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Task to compile all .cpp files in src directory."
+        },
+        {
+            "label": "Run Tests",
+            "type": "shell",
+            "command": "/bin/bash",
+            "args": [
+                "-c",
+                "/usr/bin/g++ -std=c++17 -isystem /usr/include/gtest -pthread ${workspaceFolder}/src/client.cpp ${workspaceFolder}/tests/client_tests.cpp -lgtest -lgtest_main -o ${workspaceFolder}/tests/runTests && ${workspaceFolder}/tests/runTests"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/tests"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "detail": "Task to compile and run Google Test unit tests."
+        }
+    ]
+}
